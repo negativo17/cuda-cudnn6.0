@@ -1,6 +1,7 @@
 %global         cuda_version 8.0
+%global         real_name cuda-cudnn
 
-Name:           cuda-cudnn
+Name:           %{real_name}6.0
 Version:        6.0
 Release:        1%{?dist}
 Epoch:          1
