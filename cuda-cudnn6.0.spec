@@ -1,8 +1,9 @@
 %global         cuda_version 8.0
+%global         cuda_cudnn_major 6.0
 %global         real_name cuda-cudnn
 
-Name:           %{real_name}6.0
-Version:        6.0
+Name:           %{real_name}%{cuda_cudnn_major}
+Version:        6.0.20
 Release:        1%{?dist}
 Epoch:          1
 Summary:        NVIDIA CUDA Deep Neural Network library (cuDNN)
@@ -10,10 +11,10 @@ License:        NVIDIA License
 URL:            https://developer.nvidia.com/cudnn
 ExclusiveArch:  x86_64
 
-Source0:        cudnn-%{cuda_version}-linux-x64-v%{version}.tgz
-Source1:        libcudnn6-doc_%{version}.20-1+cuda%{cuda_version}_amd64.deb
+Source0:        cudnn-%{cuda_version}-linux-x64-v%{cuda_cudnn_major}.tgz
+Source1:        libcudnn6-doc_%{version}-1+cuda%{cuda_version}_amd64.deb
 Source2:        CUDNN_Library.pdf
-Source3:        cuDNN_v%{version}_ReleaseNotes.pdf
+Source3:        cuDNN_v%{cuda_cudnn_major}_ReleaseNotes.pdf
 Source4:        NVIDIA_SLA+cuDNN_Supp_Feb2017_release.pdf
 
 %description
@@ -59,13 +60,16 @@ cp -frp *samples* %{buildroot}%{_datadir}/cuda/
 %{_libdir}/libcudnn.so.*
 
 %files devel
-%doc CUDNN_Library.pdf cuDNN_v%{version}_ReleaseNotes.pdf
+%doc CUDNN_Library.pdf cuDNN_v%{cuda_cudnn_major}_ReleaseNotes.pdf
 %{_datadir}/cuda/*
 %{_includedir}/cuda/*
 %{_libdir}/libcudnn.so
 %{_libdir}/libcudnn_static.a
 
 %changelog
+* Thu Dec 14 2017 Simone Caronni <negativo17@gmail.com> - 1:6.0.20-1
+- Update to version 6.0.20.
+
 * Fri Apr 07 2017 Simone Caronni <negativo17@gmail.com> - 1:6.0-1
 - Update to version 6.0.
 
